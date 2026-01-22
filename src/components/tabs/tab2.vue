@@ -108,15 +108,24 @@
                                     <div v-if="!item.loaded" class="loading-spinner">
                                         <v-progress-circular indeterminate></v-progress-circular>
                                     </div>
-                                    <video autoplay loop muted 
-                                        @click="item=radios"
-                                        :class="{'selected-item':radios === item }"
-                                        :style="type == 'mobile'?(smAndDown ?{width: '100px',height:'170px'}:{width: '160px',height:'272px'}):(smAndDown ?{width: '200px'}:{width: '250px'})"
-                                        style="object-fit: cover;"
-                                        rounded="lg" @loadeddata="item.loaded = true"
-                                    >
-                                        <source :src=item.preview type="video/mp4">
-                                    </video>
+                                    <video
+  autoplay
+  loop
+  muted
+  playsinline
+  webkit-playsinline
+  disablepictureinpicture
+  preload="auto"
+  class="vd-preview"
+  :class="{ 'selected-item': radios === item }"
+  :style="type == 'mobile'
+    ? (smAndDown ? { width:'100px', height:'170px' } : { width:'160px', height:'272px' })
+    : (smAndDown ? { width:'200px' } : { width:'250px' })"
+  style="object-fit: cover;"
+  @loadeddata="item.loaded = true"
+>
+  <source :src="item.preview" type="video/mp4">
+</video>
                                 </div>
                             </v-col>
                         </v-row>
@@ -321,6 +330,17 @@ export default {
 @import url(/css/mobile.less);
 </style>
 <style scoped>
+
+    .vd-preview{
+  pointer-events: none;   /* iOS：不允许 video 接收点击 */
+}
+
+video::-webkit-media-controls,
+video::-webkit-media-controls-play-button,
+video::-webkit-media-controls-start-playback-button{
+  display: none !important;
+}
+
 video{
     pointer-events: none;
     border-radius: 0.5rem;
