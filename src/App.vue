@@ -265,6 +265,12 @@
 <style scoped>
   @import url(/css/app.less);
   @import url(/css/mobile.less);
+
+  .video-bg{
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
   .play-hint-wrap{
   width: 100%;
   display: flex;
