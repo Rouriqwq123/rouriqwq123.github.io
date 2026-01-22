@@ -57,7 +57,7 @@
 		"icon": "mdi-youtube",
 		"link": "https://www.youtube.com"
 	}, {
-		"icon": "mdi-facebook",
+		"icon": "mdi-bilibili",
 		"link": "https://www.facebook.com"
 	}],
 	"typeWriterStrings": ["如果你看到了这行字，说明我已经成功吸引到了你的注意力。", "顶峰的少年，给了你所有细节，你却说我不是迪迦，给不了你想要的光。", "心简单，世界就简单，幸福才会生长；心自由，生活就自由，到哪都有快乐。", "生命太短，没有时间留给遗憾，若不是终点，请微笑一直向前。"],
@@ -78,7 +78,7 @@
 			}, {
 				"title": "安逸舒适",
 				"preview": "/img/wallpaper/static/安逸舒适/image-pre.webp",
-				"url": "/img/wallpaper/static/安逸舒适/image.png"
+				"url": "/img/wallpaper/static/安逸舒适/image-.png"
 			}
 		],
 		"picMobile": [{

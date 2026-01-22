@@ -263,21 +263,27 @@ export default {
       window.open(url, '_blank').focus();
     },
     
-    async getMusicInfo(){
-      this.musicinfoLoading = true;
-      try {
-        const response = await fetch(`https://api.i-meto.com/meting/api?server=${this.configdata.musicPlayer.server}&type=${this.configdata.musicPlayer.type}&id=${this.configdata.musicPlayer.id}`
-        );
-        if (!response.ok) {
-          throw new Error('网络请求失败');
-        }
-        this.musicinfo = await response.json();
-        this.musicinfoLoading = false;
-      } catch (error) {
-        console.error('请求失败:', error);
-      }
-      
-    },
+    async getMusicInfo() {
+  this.musicinfoLoading = true;
+
+  // ✅ 本地歌单：url 指向 public/audio 下的文件
+  this.musicinfo = [
+    { title: "Calm love", author: "Rouri", url: "/audio/1.mp3" },
+    { title: "Diarry", author: "Rouri", url: "/audio/2.mp3" },
+  ];
+
+  this.musicinfoLoading = false;
+
+  // ✅ 可选：初始化第一首（避免第一次点播放时 title/author 还没更新）
+  this.playlistIndex = 0;
+  this.$nextTick(() => {
+    if (this.musicinfo?.length && this.$refs.audioPlayer) {
+      this.$refs.audioPlayer.src = this.musicinfo[0].url;
+      if (this.$refs.audiotitle) this.$refs.audiotitle.innerText = this.musicinfo[0].title;
+      if (this.$refs.audioauthor) this.$refs.audioauthor.innerText = this.musicinfo[0].author;
+    }
+  });
+},
     musicplayershow(val) {
         this.ismusicplayer = val;
     },

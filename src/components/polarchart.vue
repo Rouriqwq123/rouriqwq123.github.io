@@ -75,7 +75,7 @@ export default {
                 label: function(context) {
                   const label = context.label || '';
                   const value = context.raw || '';
-                  return `${label}: ${value} 技能点`;
+                  return `${label}: ${value} skillPoints`;
                 },
                 title: function(context) {
                   return `${context[0].label}`;

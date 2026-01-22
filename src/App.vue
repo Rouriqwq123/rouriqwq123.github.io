@@ -60,6 +60,21 @@
                   </v-card>
                   </transition>
                 </v-avatar>
+                <!-- Play hint (clickable) -->
+<div
+  class="play-hint"
+  :class="{ playing: isPlaying }"
+  role="button"
+  tabindex="0"
+  @click="togglePlay()"
+  @keydown.enter.prevent="togglePlay()"
+>
+  <span class="dot" aria-hidden="true"></span>
+  <span class="text">
+    {{ isPlaying ? 'now playing' : (musicinfoLoading ? 'loading...' : 'play me') }}
+  </span>
+</div>
+
 
                 <v-card class="ma-5 pa-2 leleo-left-card" variant="tonal" :max-width="xs?270:300" style="text-align: center;">
                     <template v-slot:title>
@@ -86,25 +101,7 @@
                     </v-col>
                     </v-row>
 
-                    <v-row align="center" justify="center" class="setting">
-                    <v-col class="ma-1" cols="auto">
-                        <v-speed-dial
-                            :location="xs||sm ?'top center':'right center'"
-                            transition="slide-y-transition"
-                        >
-                        <template v-slot:activator="{ props: activatorProps }">
-                            <v-fab style="width: 2.5rem;height: 2.5rem;" color="var(--leleo-vcard-color)"
-                            variant="tonal"
-                            v-bind="activatorProps"
-                            icon="mdi-cog"
-                            ></v-fab>
-                        </template>
-                        <v-btn variant="tonal" class="setbtn" key="1" icon="mdi-key-chain" @click="dialog1 = true" size="31" color="var(--leleo-vcard-color)"></v-btn>
-                        <v-btn variant="tonal" class="setbtn" key="2" icon="mdi-information" @click="dialog2 = true" size="31" color="var(--leleo-vcard-color)"></v-btn>
-                        <v-btn variant="tonal" class="setbtn" key="3" icon="$error" size="31" color="var(--leleo-vcard-color)"></v-btn>
-                        </v-speed-dial>
-                    </v-col>
-                    </v-row>
+                    
                 </v-container>
             </v-col>
 
@@ -259,4 +256,63 @@
 <style scoped>
   @import url(/css/app.less);
   @import url(/css/mobile.less);
+  
+  .play-hint{
+  margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 6px 12px;
+  border-radius: 999px;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+
+  color: rgba(255,255,255,0.75);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  user-select: none;
+  cursor: pointer;
+
+  transition: transform .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
+}
+
+.play-hint:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.95);
+}
+
+.play-hint:active{
+  transform: translateY(0px) scale(0.98);
+}
+
+.play-hint .dot{
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.55);
+  box-shadow: 0 0 0 0 rgba(255,255,255,0.0);
+  transition: background .2s ease;
+}
+
+/* 播放时：小点点呼吸闪烁（高级感） */
+.play-hint.playing .dot{
+  background: rgba(120,255,200,0.9);
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse{
+  0%   { box-shadow: 0 0 0 0 rgba(120,255,200,0.35); }
+  70%  { box-shadow: 0 0 0 8px rgba(120,255,200,0.0); }
+  100% { box-shadow: 0 0 0 0 rgba(120,255,200,0.0); }
+}
+
 </style>

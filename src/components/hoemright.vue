@@ -6,48 +6,7 @@
         <div>
           <v-row align="center">
             <v-col cols="12" md="8">
-				<v-text-field class="v-card"
-					:style="xs||sm?{'display':'none'}:{}"
-					v-model="searchQuery"
-					placeholder="搜索..."
-					variant="outlined"
-					rounded
-					hide-details="true"
-					@keyup.enter="performSearch"
-					>
-					<template v-slot:prepend-inner>
-						<v-menu>
-							<template v-slot:activator="{ props }">
-							<v-btn
-								variant="text"
-								v-bind="props"
-								class="engine-btn"
-							>
-								{{ selectedEngine.title }}
-								<v-icon icon="mdi-chevron-down"></v-icon>
-							</v-btn>
-							</template>
-							<v-list class="glass-list">
-								<v-list-item
-									v-for="engine in searchEngines"
-									:key="engine.value"
-									@click="selectedEngine = engine"
-									density="compact"
-								>
-									{{ engine.title }}
-								</v-list-item>
-							</v-list>
-						</v-menu>
-					</template>
-
-					<template v-slot:append-inner>
-						<v-btn
-						:icon="isUrl ? 'mdi-earth' : 'mdi-magnify'"
-						variant="text"
-						@click="performSearch"
-						></v-btn>
-					</template>
-					</v-text-field>
+				
             	<typewriter class="ma-3 d-flex align-center justify-center" style="min-height: 200px;"></typewriter>
             </v-col>
             <v-col cols="12" md="4" align="center">
@@ -65,7 +24,7 @@
           </v-row>
           
           <v-chip class="mt-3 ml-3" prepend-icon="mdi-webhook"  size="large" style="color: var(--leleo-vcard-color);">
-            部署项目
+            My Project
           </v-chip>
           <v-container>
             <v-row>
@@ -81,7 +40,7 @@
                     aspect-ratio="1.7778"
                     :src= item.img
                     cover
-                    :style="{ opacity: 0.8 }"
+                    :style="{ opacity: 0.8}"
                   ></v-img>
                   <v-card-title :style="xs?{'font-size': '0.9rem','padding': '0.15rem 0.5rem'}:{'font-size': '1.1rem','padding':'0.2rem 0.8rem'}">
                     {{item.title}}
@@ -131,13 +90,10 @@ export default {
 	data() {
 		return {
 			searchQuery: '',
-			selectedEngine: { title: 'Bing', value: 'bing' },
+			selectedEngine: { title: 'Google', value: 'google' },
       		searchEngines :[
-				{ title: 'Bing', value: 'bing' },
 				{ title: 'Google', value: 'google' },
-				{ title: '百度', value: 'baidu' },
-				{ title: 'Yandex', value: 'yandex' },
-				{ title: 'DuckDuckGo', value: 'duckduckgo' },
+				{ title: 'Bing', value: 'bing' },
 			]
 		}
 	},
