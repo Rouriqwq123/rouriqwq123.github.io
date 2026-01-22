@@ -23,7 +23,7 @@
             </v-col>
           </v-row>
           
-          <v-chip class="mt-3 ml-3" prepend-icon="mdi-webhook"  size="large" style="color: var(--leleo-vcard-color);">
+          <v-chip class="mt-14 ml-3" prepend-icon="mdi-webhook"  size="large" style="color: var(--leleo-vcard-color);">
             My Project
           </v-chip>
           <v-container>

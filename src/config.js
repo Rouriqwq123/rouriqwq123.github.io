@@ -15,15 +15,15 @@ const config = {
 
 	// Color settings
 	color: {
-		themecolor: "#F5F5F5",
+		themecolor: "rgb(255, 255, 255)",
 		welcometitlecolor: "#FFFFFF",
-		turntablecolor1: "#8EC5FC",
-		turntablecolor2: "#E0C3FC"
+		turntablecolor1: "#36bd84",
+		turntablecolor2: "#a96224"
 	},
 
 	// Background brightness & blur
 	brightness: 85,
-	blur: 6,
+	blur: 8,
 
 	// Personal tags / labels
 	tags: [
@@ -37,19 +37,19 @@ const config = {
 	// Default background wallpaper
 	background: {
 		pc: {
-			type: "pic", // "pic" | "video"
+			type: "video", // "pic" | "video"
 			datainfo: {
 				title: "Default Wallpaper",
 				preview: "/img/wallpaper/static/安逸舒适/image-pre.webp",
-				url: "/img/wallpaper/static/安逸舒适/1.jpg"
+				url: "/img/wallpaper/dynamic/rouri/2.mp4"
 			}
 		},
 		mobile: {
-			type: "pic",
+			type: "video",
 			datainfo: {
 				title: "Default Mobile Wallpaper",
 				preview: "/img/wallpaper/static-mobile/default/image-pre.webp",
-				url: "/img/wallpaper/static-mobile/default/image.png"
+				url: "/img/wallpaper/dynamic-mobile/chuva/chuva.mp4"
 			}
 		}
 	},

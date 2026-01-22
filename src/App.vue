@@ -11,7 +11,7 @@
     :style="xs?{height: '100%',width: '100%',top: '0',left:'0'}:(sm?{height: '98%',width: '98%',top: '1%',left:' 1%','border-radius': '16px'}:{height: '96.6%',width: '99%',top: '1.7%',left:' 0.5%','border-radius': '16px',})">
         <source :src=videosrc type="video/mp4">
     </video>
-
+    
     <div class="floating-switch-container">
       <v-switch
         v-model="isClearScreen"
@@ -60,21 +60,22 @@
                   </v-card>
                   </transition>
                 </v-avatar>
-                <!-- Play hint (clickable) -->
-<div
-  class="play-hint"
-  :class="{ playing: isPlaying }"
-  role="button"
-  tabindex="0"
-  @click="togglePlay()"
-  @keydown.enter.prevent="togglePlay()"
->
-  <span class="dot" aria-hidden="true"></span>
-  <span class="text">
-    {{ isPlaying ? 'now playing' : (musicinfoLoading ? 'loading...' : 'play me') }}
-  </span>
-</div>
 
+<div class="play-hint-wrap">
+  <div
+    class="play-hint"
+    :class="{ playing: isPlaying }"
+    role="button"
+    tabindex="0"
+    @click="togglePlay()"
+    @keydown.enter.prevent="togglePlay()"
+  >
+    <span class="dot" aria-hidden="true"></span>
+    <span class="text">
+      {{ isPlaying ? 'now playing' : (musicinfoLoading ? 'loading...' : 'play me') }}
+    </span>
+  </div>
+</div>
 
                 <v-card class="ma-5 pa-2 leleo-left-card" variant="tonal" :max-width="xs?270:300" style="text-align: center;">
                     <template v-slot:title>
@@ -256,6 +257,20 @@
 <style scoped>
   @import url(/css/app.less);
   @import url(/css/mobile.less);
+  .play-hint-wrap{
+  width: 100%;
+  display: flex;
+  justify-content: center;   /* 居中 */
+  margin-top: 10px;          /* 跟头像拉开距离 */
+}
+
+/* 手机端再多给点距离，避免和 Tags 重叠 */
+@media (max-width: 600px) {
+  .play-hint-wrap{
+    margin-top: 14px;
+    margin-bottom: 6px;
+  }
+}
   
   .play-hint{
   margin-top: 10px;
