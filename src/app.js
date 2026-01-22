@@ -37,6 +37,7 @@ export default {
       musicinfoLoading:false,
       lyrics:{},
       socialPlatformIcons: null,
+      isIOS: false,
       isExpanded: false,
       stackicons:[
         {icon:"mdi-vuejs",color:"green", model: false,tip: 'vue'},
@@ -71,6 +72,9 @@ export default {
     };
   },
   async mounted() {
+    this.isIOS =
+    /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
     if(import.meta.env.VITE_CONFIG){
       this.configdata = JSON.parse(import.meta.env.VITE_CONFIG);
     }

@@ -7,19 +7,35 @@
       </div>
     </transition>
 
-    <video
+   <!-- PC / Android：用视频 -->
+<video
+  v-if="!isIOS"
   autoplay
   loop
   muted
   playsinline
-  webkit-playsinline
   class="video-bg"
-  id="bg-video"
   ref="VdPlayer"
-  :style="xs?{height: '100%',width: '100%',top: '0',left:'0'}:(sm?{height: '98%',width: '98%',top: '1%',left:' 1%','border-radius': '16px'}:{height: '96.6%',width: '99%',top: '1.7%',left:' 0.5%','border-radius': '16px',})">
-        <source :src=videosrc type="video/mp4">
-    </video>
-    
+  :style="xs
+    ? { height: '100%', width: '100%', top: '0', left: '0' }
+    : (sm
+        ? { height: '98%', width: '98%', top: '1%', left: '1%', borderRadius: '16px' }
+        : { height: '96.6%', width: '99%', top: '1.7%', left: '0.5%', borderRadius: '16px' }
+      )
+  "
+>
+  <source :src="videosrc" type="video/mp4" />
+</video>
+    <!-- iOS：用图片背景（不会有播放按钮） -->
+<div
+  v-else
+  class="video-bg image-bg"
+  :style="{
+    backgroundImage: `url(${configdata.background.mobile.datainfo.url})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center'
+  }"
+/>
     <div class="floating-switch-container">
       <v-switch
         v-model="isClearScreen"
@@ -266,6 +282,11 @@
   @import url(/css/app.less);
   @import url(/css/mobile.less);
 
+  .video-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+}
 
   /* iOS Safari: hide native video controls overlay */
 :deep(video::-webkit-media-controls),
