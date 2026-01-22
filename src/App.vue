@@ -266,7 +266,22 @@
   @import url(/css/app.less);
   @import url(/css/mobile.less);
 
-  .video-bg{
+
+  /* iOS Safari: hide native video controls overlay */
+:deep(video::-webkit-media-controls),
+:deep(video::-webkit-media-controls-panel),
+:deep(video::-webkit-media-controls-start-playback-button),
+:deep(video::-webkit-media-controls-play-button),
+:deep(video::-webkit-media-controls-overlay-play-button),
+:deep(video::-webkit-media-controls-timeline),
+:deep(video::-webkit-media-controls-volume-slider) {
+  display: none !important;
+  -webkit-appearance: none !important;
+  opacity: 0 !important;
+}
+
+/* 禁止任何交互（防止 Safari 认为它是可点媒体） */
+.video-bg {
   pointer-events: none;
   -webkit-user-select: none;
   user-select: none;
