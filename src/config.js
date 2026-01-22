@@ -45,11 +45,11 @@ const config = {
 			}
 		},
 		mobile: {
-			type: "pic",
+			type: "video",
 			datainfo: {
 				title: "Default Mobile Wallpaper",
 				preview: "/img/wallpaper/static-mobile/default/image-pre.webp",
-				url: "/img/wallpaper/static-mobile/0001/1.jpg"
+				url: "/img/wallpaper/dynamic-mobile/chuva/chuva.mp4"
 			}
 		}
 	},
